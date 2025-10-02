@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -50,7 +51,6 @@
       box-shadow: 0 0 15px rgba(255,255,255,0.8);
     }
 
-    /* Animación de entrada */
     @keyframes fadeIn {
       from {opacity: 0;}
       to {opacity: 1;}
@@ -61,7 +61,6 @@
       50% { transform: translateY(-10px); }
     }
 
-    /* Corazones animados */
     .heart {
       position: absolute;
       color: #ff4e50;
@@ -74,7 +73,6 @@
       to { transform: translateY(-10vh) scale(2); opacity: 0; }
     }
 
-    /* Notas musicales animadas */
     .note {
       position: absolute;
       color: #fff176;
@@ -82,7 +80,6 @@
       animation: floatUp 7s linear infinite;
     }
 
-    /* Cotillón (confetti) */
     .confetti {
       position: fixed;
       top: 0;
@@ -99,15 +96,14 @@
       100% { transform: translateY(100vh) rotate(360deg); }
     }
 
-    /* Reproductor invisible para autoplay */
-    .player {
+    /* reproductor invisible */
+    audio {
       display: none;
     }
   </style>
 </head>
 <body>
 
-  <!-- Tarjeta central -->
   <div class="card">
     <div class="cake">🎂🎉🎶</div>
     <h1>¡Feliz Cumpleaños, Milagritos!</h1>
@@ -116,16 +112,15 @@
     </div>
     <p>Hoy celebramos tu vida con alegría, amor y mucha música 💖<br>
     ¡Que tus sueños brillen tanto como tú! ✨</p>
-    
-    <!-- Música autoplay de SoundCloud -->
-    <div class="player">
-      <iframe width="100%" height="166" scrolling="no" frameborder="no"
-        src="https://w.soundcloud.com/player/?url=https://soundcloud.com/happy-birthday-official/happy-birthday-to-you-piano&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false">
-      </iframe>
-    </div>
+
+    <!-- música local -->
+    <audio autoplay loop>
+      <source src="cancion.mp3" type="audio/mpeg">
+      <source src="cancion.ogg" type="audio/ogg">
+      Tu navegador no soporta audio HTML5.
+    </audio>
   </div>
 
-  <!-- Corazones y notas -->
   <script>
     function createElement(type, symbol, className) {
       const el = document.createElement("div");
@@ -140,7 +135,6 @@
     setInterval(() => createElement("div", "❤️", "heart"), 800);
     setInterval(() => createElement("div", "🎵", "note"), 1200);
 
-    // Confetti
     function createConfetti() {
       const confetti = document.createElement("div");
       confetti.className = "confetti";
