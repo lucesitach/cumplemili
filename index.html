@@ -1,11 +1,67 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hola Mundo</title>
+  <meta charset="UTF-8">
+  <title>Feliz Cumpleaños Milagritos</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      text-align: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #fff;
+    }
+    .card {
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(0,0,0,0.3);
+      box-shadow: 0 0 20px rgba(0,0,0,0.4);
+      width: 400px;
+      animation: fadeIn 2s ease-in-out;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.3em;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    .cake {
+      font-size: 60px;
+    }
+    button {
+      background: #ff4e50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin-top: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    button:hover {
+      background: #ff7676;
+    }
+  </style>
 </head>
 <body>
-    <h1>¡Hola, mundo!</h1>
+  <div class="card">
+    <div class="cake">🎂🎉🎶</div>
+    <h1>¡Feliz Cumpleaños, Milagritos!</h1>
+    <p>Que tu día esté lleno de alegría, sonrisas y mucha música.  
+    Eres especial, y hoy celebramos tu vida con mucho cariño 💖</p>
+    <button onclick="playMusic()">▶ Escuchar Canción</button>
+    <audio id="song" src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mid"></audio>
+  </div>
+
+  <script>
+    function playMusic() {
+      document.getElementById('song').play();
+    }
+  </script>
 </body>
 </html>
