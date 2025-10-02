@@ -10,6 +10,7 @@
       background: linear-gradient(135deg, #ffdde1, #ee9ca7);
       font-family: 'Comic Sans MS', cursive, sans-serif;
       overflow: hidden;
+      cursor: pointer;
     }
 
     .card {
@@ -67,16 +68,16 @@
       animation: floatUp 6s linear infinite;
     }
 
-    @keyframes floatUp {
-      from { transform: translateY(100vh) scale(1); opacity: 1; }
-      to { transform: translateY(-10vh) scale(2); opacity: 0; }
-    }
-
     .note {
       position: absolute;
       color: #fff176;
       font-size: 18px;
       animation: floatUp 7s linear infinite;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(100vh) scale(1); opacity: 1; }
+      to { transform: translateY(-10vh) scale(2); opacity: 0; }
     }
 
     .confetti {
@@ -95,7 +96,51 @@
       100% { transform: translateY(100vh) rotate(360deg); }
     }
 
-    /* reproductor invisible */
+    /* Mensaje inicial animado */
+    #startMessage {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255,255,255,0.9);
+      color: #ff4e50;
+      font-size: 1.8em;
+      font-weight: bold;
+      padding: 20px 30px;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0,0,0,0.4);
+      z-index: 10;
+      cursor: pointer;
+      animation: pulse 1.5s infinite, colorShift 2s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      50% { transform: translate(-50%, -50%) scale(1.1); }
+    }
+
+    @keyframes colorShift {
+      0% { color: #ff4e50; }
+      25% { color: #ffb347; }
+      50% { color: #ff6f91; }
+      75% { color: #fddb92; }
+      100% { color: #ff4e50; }
+    }
+
+    /* Caída de emojis desde el mensaje */
+    .emoji {
+      position: absolute;
+      font-size: 24px;
+      animation: dropEmoji 3s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes dropEmoji {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(80vh) rotate(360deg); opacity: 0; }
+    }
+
     audio {
       display: none;
     }
@@ -111,16 +156,17 @@
     </div>
     <p>Hoy celebramos tu vida con alegría, amor y mucha música 💖<br>
     ¡Que tus sueños brillen tanto como tú! ✨</p>
-
-    <!-- música local -->
-    <audio autoplay loop>
-      <source src="audio.mp3" type="audio/mpeg">
-      <source src="audio.ogg" type="audio/ogg">
-      Tu navegador no soporta audio HTML5.
-    </audio>
   </div>
 
+  <div id="startMessage">💖✨🎂 ¡Toca aquí para cantar juntos! 🎶🎉</div>
+
+  <audio id="musica" loop>
+    <source src="cumple.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
   <script>
+    // Animaciones de corazones y notas
     function createElement(type, symbol, className) {
       const el = document.createElement("div");
       el.className = className;
@@ -145,6 +191,31 @@
       setTimeout(() => confetti.remove(), 4000);
     }
     setInterval(createConfetti, 200);
+
+    // Función de música y emojis
+    const audio = document.getElementById("musica");
+    const startMessage = document.getElementById("startMessage");
+
+    function startMusic() {
+      audio.play();
+      startMessage.style.display = "none";
+
+      // Emojis cayendo desde el mensaje
+      const emojis = ["🎉","✨","💖","🎂","🎵","🥳"];
+      for(let i=0; i<30; i++){
+        const emoji = document.createElement("div");
+        emoji.className = "emoji";
+        emoji.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+        emoji.style.left = (startMessage.offsetLeft + Math.random()*startMessage.offsetWidth) + "px";
+        emoji.style.animationDuration = (2 + Math.random()*2) + "s";
+        document.body.appendChild(emoji);
+        setTimeout(()=>emoji.remove(), 3000);
+      }
+    }
+
+    document.body.addEventListener("click", startMusic, {once: true});
+    document.body.addEventListener("touchstart", startMusic, {once: true});
   </script>
+
 </body>
 </html>
