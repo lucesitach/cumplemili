@@ -11,40 +11,39 @@
       color: #fff;
     }
     .card {
-      margin: 50px auto;
-      padding: 30px;
+      margin: 30px auto;
+      padding: 20px;
       border-radius: 20px;
       background: rgba(0,0,0,0.3);
       box-shadow: 0 0 20px rgba(0,0,0,0.4);
-      width: 400px;
+      width: 90%;
+      max-width: 400px;
       animation: fadeIn 2s ease-in-out;
     }
     h1 {
-      font-size: 2.5em;
+      font-size: 2.2em;
       margin-bottom: 10px;
     }
     p {
-      font-size: 1.3em;
+      font-size: 1.2em;
     }
     @keyframes fadeIn {
       from {opacity: 0;}
       to {opacity: 1;}
     }
     .cake {
-      font-size: 60px;
+      font-size: 50px;
     }
-    button {
-      background: #ff4e50;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin-top: 15px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1em;
+    .foto {
+      margin: 15px 0;
     }
-    button:hover {
-      background: #ff7676;
+    .foto img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .player {
+      margin-top: 20px;
     }
   </style>
 </head>
@@ -52,16 +51,17 @@
   <div class="card">
     <div class="cake">🎂🎉🎶</div>
     <h1>¡Feliz Cumpleaños, Milagritos!</h1>
-    <p>Que tu día esté lleno de alegría, sonrisas y mucha música.  
-    Eres especial, y hoy celebramos tu vida con mucho cariño 💖</p>
-    <button onclick="playMusic()">▶ Escuchar Canción</button>
-    <audio id="song" src="https://www2.cs.uic.edu/~i101/SoundFiles/HappyBirthday.mid"></audio>
+    <div class="foto">
+      <!-- Aquí se muestra la foto -->
+      <img src="FOTO.jpg" alt="Milagritos">
+    </div>
+    <p>Que tu día esté lleno de alegría, sonrisas y mucha música 💖</p>
+    <div class="player">
+      <!-- Canción de cumpleaños desde SoundCloud -->
+      <iframe width="100%" height="166" scrolling="no" frameborder="no"
+        src="https://w.soundcloud.com/player/?url=https://soundcloud.com/happy-birthday-official/happy-birthday-to-you-piano&color=%23ff4e50&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+      </iframe>
+    </div>
   </div>
-
-  <script>
-    function playMusic() {
-      document.getElementById('song').play();
-    }
-  </script>
 </body>
 </html>
